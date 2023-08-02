@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 import { IProduct } from "../models/product.model";
 import { environment } from "src/environments/environment";
 
-// const STORE_BASE_URL = 'https://fakestoreapi.com'
 @Injectable({
   providedIn: "root",
 })
@@ -13,10 +12,19 @@ export class StoreService {
 
   getAllProducts(
     limit: number = 12,
-    sort: string = "desc"
+    sort: string = "desc",
+    category?: string
   ): Observable<Array<IProduct>> {
     return this.httpClient.get<Array<IProduct>>(
-      `${environment.STORE_BASE_URL}/products?sort=${sort}&limit=${limit}`
+      `${environment.STORE_BASE_URL}/products${
+        category ? "/category/" + category : ""
+      }?sort=${sort}&limit=${limit}`
+    );
+  }
+
+  getAllCategories(): Observable<string[]> {
+    return this.httpClient.get<string[]>(
+      `${environment.STORE_BASE_URL}/products/categories`
     );
   }
 }
