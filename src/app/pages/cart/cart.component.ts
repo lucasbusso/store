@@ -42,4 +42,12 @@ export class CartComponent implements OnInit {
   clearProductRow(product: ICartItem): void {
     this.cartService.removeProductRow(product);
   }
+
+  onAddQuantity(product: ICartItem): void {
+    this.cartService.addToCart(product);
+  }
+
+  onRemoveQuantity(product: ICartItem): void {
+    this.cartService.removeQuantity(product);
+  }
 }

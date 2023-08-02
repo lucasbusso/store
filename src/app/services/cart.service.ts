@@ -34,11 +34,38 @@ export class CartService {
     this._snackBar.open("The cart is empty now", "Ok", { duration: 3000 });
   }
 
-  removeProductRow(product: ICartItem): void {
+  removeProductRow(
+    product: ICartItem,
+    update: boolean = true
+  ): Array<ICartItem> {
     const filteredItems = this.cart.value.items.filter(
       (_item) => _item.id !== product.id
     );
+    if (update) {
+      this.cart.next({ items: filteredItems });
+      this._snackBar.open("Product has been removed", "Ok", { duration: 3000 });
+    }
+    return filteredItems;
+  }
+
+  removeQuantity(product: ICartItem): void {
+    let itemForRemoval: ICartItem | undefined;
+    let filteredItems = this.cart.value.items.map((_item) => {
+      if (_item.id === product.id) {
+        _item.quantity--;
+
+        if (_item.quantity === 0) {
+          itemForRemoval = _item;
+        }
+      }
+      return _item;
+    });
+    if (itemForRemoval) {
+      filteredItems = this.removeProductRow(itemForRemoval, false);
+    }
     this.cart.next({ items: filteredItems });
-    this._snackBar.open("Product has been removed", "Ok", { duration: 3000 });
+    this._snackBar.open("1 item removed successfully", "Ok", {
+      duration: 3000,
+    });
   }
 }
