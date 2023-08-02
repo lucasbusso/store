@@ -11,7 +11,7 @@ export class ProductsHeaderComponent implements OnInit {
   @Output() itemsSortChange = new EventEmitter<string>();
 
   sort: string = "Desc";
-  itemsShowCount: number | undefined = 10;
+  itemsShowCount: number | undefined = 12;
   constructor() {}
 
   ngOnInit(): void {}
