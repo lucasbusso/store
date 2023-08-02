@@ -8,29 +8,7 @@ import { CartService } from "src/app/services/cart.service";
 })
 export class CartComponent implements OnInit {
   cart: ICart = {
-    items: [
-      {
-        product: "https://via.placeholder.com/150",
-        name: "Nike Air Force",
-        price: 150,
-        quantity: 1,
-        id: 1,
-      },
-      {
-        product: "https://via.placeholder.com/150",
-        name: "Nike shoes",
-        price: 70,
-        quantity: 4,
-        id: 2,
-      },
-      {
-        product: "https://via.placeholder.com/150",
-        name: "Adidas Express",
-        price: 125,
-        quantity: 4,
-        id: 3,
-      },
-    ],
+    items: [],
   };
   dataSource: Array<ICartItem> = [];
 
@@ -47,6 +25,10 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = this.cart.items;
+    this.cartService.cart.subscribe((_cart: ICart) => {
+      this.cart = _cart;
+      this.dataSource = this.cart.items;
+    });
   }
 
   getTotal(items: Array<ICartItem>): number {
