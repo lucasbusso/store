@@ -8,6 +8,7 @@
     <mat-grid-list gutterSize="16" [cols]="plpColumns" [rowHeight]="rowHeight">
       <mat-grid-tile>
         <app-product-tile
+          (addToCartEvent)="onAddToCart($event)"
           class="w-full"
           [fullWidthMode]="plpColumns === 1"
         ></app-product-tile>
