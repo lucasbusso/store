@@ -6,8 +6,9 @@
     <app-products-header (columnsCountChange)="onColumnsCountChange($event)">
     </app-products-header>
     <mat-grid-list gutterSize="16" [cols]="plpColumns" [rowHeight]="rowHeight">
-      <mat-grid-tile>
+      <mat-grid-tile *ngFor="let product of products">
         <app-product-tile
+          [product]="product"
           (addToCartEvent)="onAddToCart($event)"
           class="w-full"
           [fullWidthMode]="plpColumns === 1"
