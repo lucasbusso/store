@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 const app = express();
 app.use(express.static("public"));
@@ -8,9 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({ origin: true, credentials: true }));
 
-const stripe = require("stripe")(
-  "sk_test_51NalISD6OC8MoIYlD1TDjTaoWn8F6Km9tYvTYCOSKJIZdkp7fTvV4G13p6upt8PSeZlLnzbcCfKWbUvTAFwnCARQ00ADjTRm43"
-);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.post("/checkout", async (req, res, next) => {
   try {
@@ -73,8 +72,8 @@ app.post("/checkout", async (req, res, next) => {
         quantity: item.quantity,
       })),
       mode: "payment",
-      success_url: "http://localhost:4242/success.html",
-      cancel_url: "http://localhost:4242/cancel.html",
+      success_url: `${process.env.SERVER_URL}/success.html`,
+      cancel_url: `${process.env.SERVER_URL}/cancel.html`,
     });
 
     res.status(200).json(session);
