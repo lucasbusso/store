@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   STORE_BASE_URL: "https://fakestoreapi.com",
+  STRIPE_SERVER_URL: "http://localhost:4242",
+  STRIPE_API_KEY:
+    "pk_test_51NalISD6OC8MoIYlU8qCfpLdwO1GcSpOh33Igo7MfzgPl2whu2Rs7ZixYPCMV41jctGA9bre8ByNPFaH9yxRnNUi0055wQ2tVU",
 };
 
 /*
