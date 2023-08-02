@@ -19,13 +19,22 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./pages/home/home.component";
-import { ProductsHeaderComponent } from './pages/home/components/products-header/products-header.component';
-import { FiltersComponent } from './pages/home/components/filters/filters.component';
-import { ProductTileComponent } from './pages/home/components/product-tile/product-tile.component';
-import { CartComponent } from './pages/cart/cart.component';
+import { ProductsHeaderComponent } from "./pages/home/components/products-header/products-header.component";
+import { FiltersComponent } from "./pages/home/components/filters/filters.component";
+import { ProductTileComponent } from "./pages/home/components/product-tile/product-tile.component";
+import { CartComponent } from "./pages/cart/cart.component";
+import { CartService } from "./services/cart.service";
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, ProductsHeaderComponent, FiltersComponent, ProductTileComponent, CartComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    HomeComponent,
+    ProductsHeaderComponent,
+    FiltersComponent,
+    ProductTileComponent,
+    CartComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,7 +52,7 @@ import { CartComponent } from './pages/cart/cart.component';
     MatBadgeModule,
     MatSnackBarModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
