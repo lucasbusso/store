@@ -34,4 +34,12 @@ export class CartComponent implements OnInit {
   getTotal(items: Array<ICartItem>): number {
     return this.cartService.getTotal(items);
   }
+
+  onClearCart(): void {
+    this.cartService.clearCart();
+  }
+
+  clearProductRow(product: ICartItem): void {
+    this.cartService.removeProductRow(product);
+  }
 }
