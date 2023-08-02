@@ -9,14 +9,7 @@ export class ProductTileComponent implements OnInit {
   @Input() fullWidthMode: boolean = false;
   @Output() addToCartEvent = new EventEmitter();
 
-  product: IProduct | undefined = {
-    title: "Product 1",
-    price: 130,
-    category: "Category 1",
-    description: "Product description",
-    id: 1,
-    image: "https://via.placeholder.com/150",
-  };
+  @Input() product: IProduct | undefined;
 
   constructor() {}
 
