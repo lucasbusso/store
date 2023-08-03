@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
   @Output() addToCartEvent = new EventEmitter();
 
   productId: any;
+
   constructor(
     private route: ActivatedRoute,
     private storeService: StoreService,
@@ -23,14 +24,23 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.productId = params.get("id");
+      this.route.paramMap.subscribe((params) => {
+        const productId: string | null = params.get("id");
+        this.storeService.getProductById(productId).subscribe((_product) => {
+          this.product = _product;
+          console.log(this.product);
+        });
+      });
     });
-    this.product = this.storeService
-      .getProductById(this.productId)
-      .subscribe((_product) => (this.product = _product));
   }
 
-  onAddToCart(): void {
-    this.cartService.addToCart(this.product);
+  onAddToCart(product: IProduct): void {
+    this.cartService.addToCart({
+      product: product.image,
+      name: product.title,
+      id: product.id,
+      price: product.price,
+      quantity: 1,
+    });
   }
 }

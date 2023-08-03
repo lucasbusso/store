@@ -7,7 +7,7 @@
       <p>{{ product?.description }}</p>
       <div class="mt-12 flex justify-between items-center">
         <div>{{ product?.price | currency }}</div>
-        <button mat-icon-button (click)="onAddToCart()">
+        <button mat-icon-button (click)="onAddToCart(product)">
           <mat-icon>shopping_cart</mat-icon>
         </button>
       </div>
