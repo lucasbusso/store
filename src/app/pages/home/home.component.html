@@ -12,6 +12,7 @@
         <app-product-tile
           [product]="product"
           (addToCartEvent)="onAddToCart($event)"
+          (getProductEvent)="getProductById($event)"
           class="w-full"
           [fullWidthMode]="plpColumns === 1"
         ></app-product-tile>

@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   category: string | undefined;
   rowHeight = ROWS_HEIGHT[this.plpColumns];
   products: Array<IProduct> | undefined;
+  singleProduct: IProduct | undefined;
   sort: string = "desc";
   count: number = 12;
   productsSubscription: Subscription | undefined;
@@ -37,6 +38,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.productsSubscription = this.storeService
       .getAllProducts(this.count, this.sort, this.category)
       .subscribe((_products) => (this.products = _products));
+  }
+
+  getProductById(productId: any): void {
+    this.storeService
+      .getProductById(productId)
+      .subscribe((_product) => (this.singleProduct = _product));
   }
 
   onColumnsCountChange(colsNumber: number): void {
