@@ -2,7 +2,10 @@
   <div [ngClass]="{ flex: fullWidthMode }">
     <img
       class="mb-1 mx-auto h-[200px]"
-      [ngClass]="{ 'h-200': !fullWidthMode, 'h-[360px]': fullWidthMode }"
+      [ngClass]="{
+        'h-200': !fullWidthMode,
+        'h-[360px] w-[300px] object-cover': fullWidthMode
+      }"
       [src]="product.image"
     />
     <div
