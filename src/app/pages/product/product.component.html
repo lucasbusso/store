@@ -1,0 +1,26 @@
+<mat-card class="py-12">
+  <div class="flex">
+    <div class="w-[50%] text-left">
+      <div class="w-full text-4xl pb-12">
+        {{ product?.title?.toUpperCase() }}
+      </div>
+      <p>{{ product?.description }}</p>
+      <div class="mt-12 flex justify-between items-center">
+        <div>{{ product?.price | currency }}</div>
+        <button mat-icon-button (click)="onAddToCart()">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="w-[50%]">
+      <mat-card-content>
+        <img
+          [src]="product?.image"
+          width="auto"
+          height="300px"
+          class="max-h-[300px] mx-auto"
+        />
+      </mat-card-content>
+    </div>
+  </div>
+</mat-card>
