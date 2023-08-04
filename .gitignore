@@ -8,7 +8,7 @@
 
 # Node
 /node_modules
-/server/node_modules
+# /server/node_modules
 /server/package-lock.json
 /server/.env
 npm-debug.log
