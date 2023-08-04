@@ -11,6 +11,10 @@ app.use(cors({ origin: true, credentials: true }));
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
+app.get("/", (req, res) => {
+  res.send("¡Éxito! El servidor Express está funcionando.");
+});
+
 app.post("/checkout", async (req, res, next) => {
   try {
     const session = await stripe.checkout.sessions.create({
