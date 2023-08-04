@@ -7,12 +7,17 @@ const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: "*" }));
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(
+  "sk_test_51NalISD6OC8MoIYlD1TDjTaoWn8F6Km9tYvTYCOSKJIZdkp7fTvV4G13p6upt8PSeZlLnzbcCfKWbUvTAFwnCARQ00ADjTRm43"
+);
 
 app.get("/", (req, res) => {
   res.send("¡Éxito! El servidor Express está funcionando.");
+});
+app.get("/checkout", (req, res) => {
+  res.send("¡Éxito! El servidor Express está funcionando en checkout.");
 });
 
 app.post("/checkout", async (req, res, next) => {
